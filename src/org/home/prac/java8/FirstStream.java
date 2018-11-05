@@ -16,6 +16,6 @@ public class FirstStream {
 		// Commenting as cannot run stream more than once
 		//nums.filter(p1).forEach(System.out::println);
 		
-		nums.filter(p2.or(p3)).forEach(System.out::println);;
+		nums.filter(p2.or(p3)).forEach(System.out::println);
 	}
 }
