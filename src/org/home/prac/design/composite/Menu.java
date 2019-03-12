@@ -24,8 +24,8 @@ public class Menu extends MenuComponent {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		//builder.append(print(this));
-		
+		builder.append(print(this));
+		 
 		Iterator<MenuComponent> itr = menuComponents.iterator();
 		while(itr.hasNext()) {
 			MenuComponent menuComponent = itr.next();
