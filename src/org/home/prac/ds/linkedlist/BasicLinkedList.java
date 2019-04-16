@@ -55,6 +55,38 @@ public class BasicLinkedList<T> {
 		}
 	}
 	
+	public T get(int position) {
+		if(first == null) {
+			throw new IllegalStateException("List is Empty");
+		}
+		Node currNode = first;
+		int idx = 0;
+		while(currNode != null) {
+			if(idx == position) {
+				return currNode.getNodeItem();
+			}
+			currNode = currNode.getNextNode();
+			idx++;
+		}
+		return null;
+	}
+	
+	public int find(T item) {
+		if(first == null) {
+			throw new IllegalStateException("List is Empty");
+		}
+		Node currNode = first;
+		int idx = 0;
+		while(currNode != null) {
+			if(currNode.getNodeItem().equals(item)) {
+				return idx;
+			}
+			currNode = currNode.getNextNode();
+			idx++;
+		}
+		return -1;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
