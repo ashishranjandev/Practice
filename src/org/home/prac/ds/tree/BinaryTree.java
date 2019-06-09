@@ -69,6 +69,14 @@ public class BinaryTree {
 		return Math.max(Math.max(ldiameter+1, rdiameter+1), ldepth+rdepth+1);
 	}
 	
+	int size(Node node) {
+		if(node == null) {
+			return 0;
+		} else {
+			return size(node.left) + size(node.right) + 1;
+		}
+	}
+	
 	int maxWidth(Node node) {
 		if(node == null) {
 			return 0;
@@ -184,14 +192,28 @@ public class BinaryTree {
 				}
 				// Make curr as right child of its inorder predecessor
 				if (pre.right == null) {
+					// Making a thread and bringing down curr to its left
 					pre.right = curr;
 					curr = curr.left;
 				} else {
+					// This means we have approached a thread.
+					// We need to print the value and break the thread
 					pre.right = null;
 					System.out.print(curr.key + " ");
 					curr = curr.right;
 				}
 			}
+		}
+	}
+	
+	int printLeafNodes(Node node) {
+		if(node == null) {
+			return 0;
+		}
+		if(node.left == null && node.right == null) {
+			return 1;
+		} else {
+			return printLeafNodes(node.left) + printLeafNodes(node.right);
 		}
 	}
 
@@ -226,43 +248,45 @@ public class BinaryTree {
 	}
 
 	public static void main(String[] args) {
-		BinaryTree tree = new BinaryTree();
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-		tree.root.right = new Node(3);
-		tree.root.left.left = new Node(4);
-		tree.root.left.right = new Node(5);
+		BinaryTree tree1 = new BinaryTree();
+		tree1.root = new Node(1);
+		tree1.root.left = new Node(2);
+		tree1.root.right = new Node(3);
+		tree1.root.left.left = new Node(4);
+		tree1.root.left.right = new Node(5);
 
-		System.out.println("Preorder traversal of binary tree is ");
-		tree.printPreorder(tree.root);
+		System.out.println("Preorder traversal of binary tree1 is ");
+		tree1.printPreorder(tree1.root);
 
-		System.out.println("\nInorder traversal of binary tree is ");
-		tree.printInorder(tree.root);
+		System.out.println("\nInorder traversal of binary tree1 is ");
+		tree1.printInorder(tree1.root);
 
-		System.out.println("\nPostorder traversal of binary tree is ");
-		tree.printPostorder(tree.root);
+		System.out.println("\nPostorder traversal of binary tree1 is ");
+		tree1.printPostorder(tree1.root);
 		
-		System.out.println("\nHeight of binary tree is : "+tree.height(tree.root));
-		System.out.println("\nDiameter of binary tree is : "+tree.diameter(tree.root));
-		System.out.println("\nMax width of binary tree is : "+tree.maxWidth(tree.root));
+		System.out.println("\nHeight of binary tree1 is : "+tree1.height(tree1.root));
+		System.out.println("\nDiameter of binary tree1 is : "+tree1.diameter(tree1.root));
+		System.out.println("\nMax width of binary tree1 is : "+tree1.maxWidth(tree1.root));
+		System.out.println("\nSize of binary tree1 is : "+tree1.size(tree1.root));
+		System.out.println("\nLeaf nodes in a binary tree1 is : "+tree1.printLeafNodes(tree1.root));
 
-		System.out.println("\nInorder-Iterative traversal of binary tree is ");
-		tree.printIterativeInorder(tree.root);
+		System.out.println("\nInorder-Iterative traversal of binary tree1 is ");
+		tree1.printIterativeInorder(tree1.root);
 
-		System.out.println("\nPreorder-Iterative traversal of binary tree is ");
-		tree.printIterativePreorder(tree.root);
+		System.out.println("\nPreorder-Iterative traversal of binary tree1 is ");
+		tree1.printIterativePreorder(tree1.root);
 
-		System.out.println("\nLevel-Order traversal of binary tree is ");
-		tree.printLevelOrder(tree.root);
+		System.out.println("\nLevel-Order traversal of binary tree1 is ");
+		tree1.printLevelOrder(tree1.root);
 
-		System.out.println("\nReverse-Level-Order traversal of binary tree is ");
-		tree.printReverseLevelOrder(tree.root);
+		System.out.println("\nReverse-Level-Order traversal of binary tree1 is ");
+		tree1.printReverseLevelOrder(tree1.root);
 
-		System.out.println("\nMorris-In-Order traversal of binary tree is ");
-		tree.printInorderMorris(tree.root);
+		System.out.println("\nMorris-In-Order traversal of binary tree1 is ");
+		tree1.printInorderMorris(tree1.root);
 
-		System.out.println("\nMorris-Pre-Order traversal of binary tree is ");
-		tree.printPreorderMorris(tree.root);
+		System.out.println("\nMorris-Pre-Order traversal of binary tree1 is ");
+		tree1.printPreorderMorris(tree1.root);
 	}
 
 }
